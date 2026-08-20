@@ -1,0 +1,94 @@
+# DEM'S — root .gitignore covering the whole fullstack app
+# (backend/ Laravel API, frontend/ React+Vite SPA, frontend/android/ Capacitor wrapper)
+
+# ============================
+# Environment & secrets
+# ============================
+.env
+.env.local
+.env.*.local
+.env.backup
+.env.production
+!.env.example
+auth.json
+
+# ============================
+# Backend (Laravel) — backend/
+# ============================
+backend/vendor/
+backend/node_modules/
+backend/public/build/
+backend/public/hot/
+backend/public/storage/
+backend/storage/*.key
+backend/storage/pail
+backend/.phpunit.cache
+backend/.phpunit.result.cache
+backend/.phpactor.json
+backend/Homestead.json
+backend/Homestead.yaml
+
+# ============================
+# Frontend (Vite/React) — frontend/
+# ============================
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+
+# ============================
+# Frontend — Capacitor Android — frontend/android/
+# ============================
+frontend/android/.gradle/
+frontend/android/build/
+frontend/android/app/build/
+frontend/android/local.properties
+frontend/android/capacitor-cordova-android-plugins/
+frontend/android/app/src/main/assets/public/
+frontend/android/app/src/main/assets/capacitor.config.json
+frontend/android/app/src/main/assets/capacitor.plugins.json
+frontend/android/app/src/main/res/xml/config.xml
+
+# Release signing — never commit the upload keystore or its credentials
+frontend/android/key.properties
+frontend/android/keystore/
+*.jks
+*.keystore
+
+# Build outputs
+*.apk
+*.aab
+*.aar
+
+# ============================
+# Logs
+# ============================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ============================
+# OS / Editor
+# ============================
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.fleet/
+.nova/
+.zed/
+*.suo
+*.sw?
+
+illustration/
+AUDIT.md
+CLAUDE.md
+dems.sql
+DEPLOYMENT.md
+scope.md
+implementation_plan.md
+AP-ICONs/
+

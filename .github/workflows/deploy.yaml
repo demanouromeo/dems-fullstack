@@ -1,0 +1,52 @@
+name: Deploy React app
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/deploy.yaml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build
+        working-directory: frontend
+        run: npm run build
+
+      - name: Upload build files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftp://82.25.113.174
+          username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          local-dir: ./frontend/dist/
+          server-dir: /public_html/
+          exclude: |
+            **/.git*/**
+            **/app/**
+            **/bootstrap/**
+            **/config/**
+            **/database/**
+            **/public/**
+            **/resources/**
+            **/routes/**
+            **/storage/**
+            **/vendor/**
+            **/.env
+            **/artisan
+            **/composer.json
+            **/composer.lock
